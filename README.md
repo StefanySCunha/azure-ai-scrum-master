@@ -39,7 +39,7 @@ O agente segue um **Workflow Mandatório de 5 Etapas** (conforme definido no Sys
 
 ### 1. Lógica Funcional (Print 1)
 O código Python demonstra a implementação das duas regras de negócio (Fibonacci e Capacidade).
-**** (Insira o **PRINT 1**)
+![code interpreter](./prints/print1.png)
 
 ```python
 from promptflow.core import tool
