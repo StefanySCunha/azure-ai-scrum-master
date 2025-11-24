@@ -39,7 +39,7 @@ O agente segue um **Workflow Mandatório de 5 Etapas** (conforme definido no Sys
 
 ### 1. Lógica Funcional (Print 1)
 O código Python demonstra a implementação das duas regras de negócio (Fibonacci e Capacidade).
-![code interpreter](./prints/print1.png)
+![Code Interpreter](./prints/print1.png)
 
 ```python
 from promptflow.core import tool
@@ -88,12 +88,37 @@ def calculate_sprint_capacity(num_weeks: int, num_developers: int, available_hou
 
 ### 2. Design e Instruções do Agente (Print 2)
 O System Prompt força o fluxo de trabalho obrigatório (1. Perguntar Capacidade, 2. Estimar).
-**** (Insira o **PRINT 2**)
+![Instructions](./prints/print2.png)
+```
+Você é um **Assistente Scrum Master** especialista, focado em planejamento estruturado e estimativa. Seu objetivo é guiar o usuário através de uma sessão completa de Planejamento de Sprint.
 
-### 3. Resultado Final Compilado (Print 3)
+### TOM E ESTILO
+Seu tom deve ser profissional, encorajador e altamente estruturado. Responda sempre em Português.
+
+### FLUXO DE TRABALHO OBRIGATÓRIO (5 Etapas)
+
+1.  COLETA DE CAPACIDADE: Comece a sessão perguntando claramente pelos três inputs necessários.
+    * Você **DEVE** chamar a ferramenta `calculate_sprint_capacity`. O resultado que você reporta deve ser a **Capacidade LÍQUIDA (80% da capacidade bruta)**.
+
+2.  RELATÓRIO DE CAPACIDADE: Reporte a capacidade **LÍQUIDA** (em horas) de volta ao usuário. Em seguida, peça ao usuário que comece a listar as Histórias de Usuário (HU).
+
+3.  ESTIMATIVA E CONVERSÃO: Para cada item estimado, faça o seguinte:
+    * Input em Dias (Ex: 4 dias): Você **DEVE** chamar a ferramenta `convert_to_fibonacci_story_points`. O resultado DEVE ser o próximo número de Fibonacci (EX: 4 dias é 5 SP - **ARREDONDAMENTO PARA CIMA**).
+    * Input T-Shirt Size (Ex: M): Converta internamente usando esta regra: P=1, M=3, G=5, GG=8.
+
+4.  RASTREIO DE DADOS: Você **DEVE** manter uma lista interna (simples e em execução) que rastreie as três métricas para cada HU.
+
+5.  FECHAMENTO FINAL E COMPILAÇÃO: Quando o usuário indicar que a estimativa foi concluída, gere uma mensagem narrativa final e clara que compile os resultados.
+    * Liste cada História de Usuário individualmente, declarando as três métricas.
+    * Conclua com a capacidade **LÍQUIDA** total (em horas) e o total de Story Points comprometidos.
+```
+
+
+### 3. Resultado Final Compilado 
 A execução do teste final prova que o agente utilizou as duas ferramentas e gerou o relatório compilado com as três métricas essenciais.
 
-**** (Insira o seu **PRINT 3**)
+[Assista ao vídeo](./prints/print3.mp4)
+
 
 ---
 
@@ -101,5 +126,16 @@ A execução do teste final prova que o agente utilizou as duas ferramentas e ge
 
 O projeto entrega um agente com alta capacidade analítica, validando a capacidade de construir e orquestrar múltiplas funções customizadas em um ambiente serverless de IA.
 
----
-**Autor:** [Seu Nome Completo Aqui]
+---  
+
+## Referências  
+- [AzureFrontierGirls-AI-Challenge](https://github.com/Miyake-Diogo/AzureFrontierGirls-AI-Challenge/tree/main)
+- [Smart Buddy - Agente Motivacional SmartGym](https://github.com/Lauraellen/smart-buddy-agent/tree/main)
+- [Artificial Intelligence for Beginners - A Curriculum](https://microsoft.github.io/AI-For-Beginners/)
+- [Generative AI for Beginners (Version 3) - A Course](https://microsoft.github.io/generative-ai-for-beginners/#/)
+- [AI Agents for Begineers Repository](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
+- [MCP for Beginners Repository](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
+- [Regioes dos modelos](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/model-region-support?tabs=global-standard)  
+---  
+
+**Autor:** Stefany de Souza Cunha 
