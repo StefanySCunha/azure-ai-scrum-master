@@ -38,7 +38,8 @@ O agente segue um **Workflow Mandatório de 5 Etapas** (conforme definido no Sys
 ## 📚 Prova de Execução e Lógica
 
 ### 1. Lógica Funcional (Print 1)
-O código Python demonstra a implementação das duas regras de negócio (Fibonacci e Capacidade).
+O código Python demonstra a implementação das duas regras de negócio (Fibonacci e Capacidade).  
+
 ![Code Interpreter](./prints/print1.png)
 
 ```python
@@ -87,7 +88,8 @@ def calculate_sprint_capacity(num_weeks: int, num_developers: int, available_hou
 
 
 ### 2. Design e Instruções do Agente (Print 2)
-O System Prompt força o fluxo de trabalho obrigatório (1. Perguntar Capacidade, 2. Estimar).
+O System Prompt força o fluxo de trabalho obrigatório (1. Perguntar Capacidade, 2. Estimar).  
+
 ![Instructions](./prints/print2.png)
 ```
 Você é um **Assistente Scrum Master** especialista, focado em planejamento estruturado e estimativa. Seu objetivo é guiar o usuário através de uma sessão completa de Planejamento de Sprint.
