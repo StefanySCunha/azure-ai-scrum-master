@@ -41,6 +41,51 @@ O agente segue um **Workflow Mandatório de 5 Etapas** (conforme definido no Sys
 O código Python demonstra a implementação das duas regras de negócio (Fibonacci e Capacidade).
 **** (Insira o **PRINT 1**)
 
+```python
+from promptflow.core import tool
+
+@tool
+def convert_to_fibonacci_story_points(effort_estimate: float) -> int:
+    """
+    Converts estimated effort (days or hours) to the nearest upward Story Point 
+    on the Fibonacci scale, following Agile estimation rules.
+    """
+    # A sequência de Fibonacci padrão para Story Points
+    fibonacci = [1, 2, 3, 5, 8, 13, 21]
+    
+    if effort_estimate <= 0:
+        return 0
+        
+    # Itera para encontrar o primeiro ponto de Fibonacci maior ou igual à estimativa.
+    # Isso simula o arredondamento para cima (Round Up) baseado na incerteza.
+    for point in fibonacci:
+        if point >= effort_estimate:
+            return point
+            
+    # Se a estimativa for maior que 21, retorna 21 como teto (um "épico" ou "spike").
+    return fibonacci[-1]
+```  
+```python
+from promptflow.core import tool
+
+@tool
+def calculate_sprint_capacity(num_weeks: int, num_developers: int, available_hours_per_day: int) -> int:
+    """
+    Calculates the total available working hours for a sprint, excluding meetings/overhead.
+    Assumes 5 working days per week.
+    """
+    TOTAL_DAYS = num_weeks * 5  # 5 working days per week
+    
+    # Capacidade total em horas (considerando a equipe)
+    total_capacity = TOTAL_DAYS * num_developers * available_hours_per_day
+    
+    # Reduz 20% para reuniões, burocracia e overhead (boa prática ágil)
+    net_capacity = int(total_capacity * 0.80) 
+    
+    return net_capacity
+```
+
+
 ### 2. Design e Instruções do Agente (Print 2)
 O System Prompt força o fluxo de trabalho obrigatório (1. Perguntar Capacidade, 2. Estimar).
 **** (Insira o **PRINT 2**)
